@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yuksek-sura"
+version = "0.2.0"
+description = "Structured, resilient, cooperative multi-agent council over LiteLLM"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "litellm>=1.95,<2",
+  "pydantic>=2.8,<3",
+  "pydantic-settings>=2.4,<3",
+  "tenacity>=9,<10",
+  "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "pytest-asyncio>=0.24,<1",
+]
+
+[project.scripts]
+yuksek-sura = "supreme_council.cli:main"
+yuksek-sura-gui = "supreme_council.desktop:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["supreme_council*"]
+
+[tool.setuptools.package-data]
+supreme_council = ["assets/*.png", "assets/*.ico"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+pythonpath = ["."]
